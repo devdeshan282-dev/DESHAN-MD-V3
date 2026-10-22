@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"/>
+<meta name="theme-color" content="#020408"/>
+<meta name="referrer" content="no-referrer"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https: data:; media-src https://files.catbox.moe; connect-src 'self' https://challenges.cloudflare.com; object-src 'none'; base-uri 'none'; form-action 'none'"/>
+<script>if(window.top!==window.self){document.documentElement.style.display='none';try{window.top.location=window.self.location;}catch(_){}}</script>
+<title>DESHAN MD — Movie Request</title>
+<meta property="og:title" content="DESHAN MD — Movie Request"/>
+<meta property="og:description" content="🎬 Movie · KDrama · Cartoon · Songs · Adult — Group එකට request කරන්න."/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+Sinhala:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#020408;--blue:#0088ff;--cyan:#00d4ff;--violet:#6a3fff;--green:#00e88a;--pink:#ff3d8a;--gold:#ffb800;
+  --text:#ddeeff;--muted:rgba(160,200,255,0.42);
+  --border:rgba(0,140,255,0.12);--border-h:rgba(0,200,255,0.28);
+  --font:'Poppins','Noto Sans Sinhala',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);}
+button,input,select{font-family:inherit;color:inherit;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:#03070f;}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--blue),var(--cyan));border-radius:8px;}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;}
+
+#particleCanvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
+.bg-layer{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse at 50% 0%,#06152a 0%,var(--bg) 65%);}
+
+/* SPLASH */
+.splash{position:fixed;inset:0;z-index:10000;background:#030609;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:transform .7s cubic-bezier(.65,0,.35,1);}
+.splash.out{transform:translateY(-100%);}
+.splash-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,100,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(0,100,255,.07) 1px,transparent 1px);background-size:42px 42px;}
+.splash-content{position:relative;text-align:center;}
+.ring{border-radius:50%;background:conic-gradient(from 0deg,var(--blue),var(--cyan),var(--violet),var(--blue));padding:3px;animation:spinRing 4s linear infinite;}
+.ring-in{width:100%;height:100%;border-radius:50%;background:#030609;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.splash .ring{width:84px;height:84px;margin:0 auto 20px;}
+.ring-in i{font-size:1.9rem;background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;}
+@keyframes spinRing{to{transform:rotate(360deg);}}
+.splash-title{font-size:3.4rem;font-weight:900;line-height:1;letter-spacing:-2px;}
+.splash-title .z{background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.splash-bar{width:0;height:2px;margin:16px auto;background:linear-gradient(90deg,transparent,var(--blue),var(--cyan),var(--blue),transparent);animation:barIn .8s ease .3s forwards;}
+@keyframes barIn{to{width:200px;}}
+.splash-sub{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:4px;color:rgba(0,210,255,.6);text-transform:uppercase;}
+
+/* HEADER */
+.glass-header{position:fixed;top:12px;left:50%;transform:translateX(-50%);width:94%;max-width:1200px;background:rgba(5,12,24,.75);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid var(--border);border-radius:56px;padding:8px 14px;z-index:1000;display:flex;justify-content:space-between;align-items:center;box-shadow:0 8px 40px rgba(0,0,0,.7);}
+.header-left{display:flex;align-items:center;gap:11px;}
+.hdr-logo-ring{width:40px;height:40px;padding:2px;animation-duration:6s;}
+.hdr-logo-ring .ring-in{background:#040a18;}
+.hdr-logo-ring img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.header-brand{font-size:1rem;font-weight:800;letter-spacing:-.3px;}
+.header-brand .b{background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.nav-btn{padding:8px 16px;border-radius:40px;border:1px solid var(--border);font-size:.76rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,.65);background:rgba(255,255,255,.03);transition:all .25s ease;cursor:pointer;}
+.nav-btn:hover{color:#fff;background:rgba(0,136,255,.08);border-color:var(--border-h);transform:translateY(-2px);}
+
+/* CONTAINER */
+.container{max-width:960px;margin:0 auto;padding:92px 16px 80px;position:relative;z-index:10;opacity:0;transition:opacity .9s ease;}
+.container.visible{opacity:1;}
+
+/* HERO */
+.hero{text-align:center;padding:22px 0 14px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,80,200,.08);border:1px solid rgba(0,160,255,.18);border-radius:60px;padding:5px 16px 5px 10px;font-size:.72rem;font-weight:600;color:rgba(0,210,255,.85);letter-spacing:.06em;margin-bottom:18px;}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px rgba(0,232,138,.6);animation:dotPulse 1.5s infinite;}
+.pulse.off{background:#ff5470;box-shadow:0 0 10px rgba(255,84,112,.6);animation:none;}
+@keyframes dotPulse{0%,100%{opacity:.4;transform:scale(.8);}50%{opacity:1;transform:scale(1.2);}}
+.hero-title{font-size:2.8rem;font-weight:900;line-height:1.08;letter-spacing:-1.5px;margin-bottom:8px;}
+.hero-title .blue{background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero-sub{font-size:.9rem;color:var(--muted);max-width:48ch;margin:0 auto 14px;line-height:1.7;}
+.hero-tags{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+.htag{display:flex;align-items:center;gap:7px;font-size:.72rem;color:var(--muted);}
+.htag i{color:var(--cyan);font-size:.68rem;}
+
+/* TABS */
+.tabs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:10px 0 14px;}
+.tab{padding:9px 16px;border-radius:60px;font-weight:700;font-size:.78rem;cursor:pointer;color:rgba(255,255,255,.6);background:rgba(255,255,255,.04);border:1px solid var(--border);display:inline-flex;align-items:center;gap:7px;transition:all .3s cubic-bezier(.175,.885,.32,1.275);white-space:nowrap;}
+.tab:hover{transform:translateY(-2px);border-color:var(--border-h);}
+.tab[aria-pressed="true"]{color:var(--cyan);border-color:var(--cyan);background:rgba(0,180,255,.12);box-shadow:0 6px 22px rgba(0,180,255,.12);}
+.tab.adult-tab[aria-pressed="true"]{color:var(--pink);border-color:var(--pink);background:rgba(255,61,138,.08);box-shadow:0 6px 22px rgba(255,61,138,.1);}
+.tab-lock-icon{font-size:.65rem;}
+
+/* SEARCH */
+.search-box{display:flex;gap:10px;align-items:center;background:rgba(6,14,24,.55);backdrop-filter:blur(14px);border:1px solid var(--border);border-radius:60px;padding:6px 6px 6px 20px;margin:8px 0 6px;position:relative;overflow:hidden;transition:border-color .3s;}
+.search-box::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);}
+.search-box:focus-within{border-color:var(--border-h);}
+.search-box i.lead{color:var(--cyan);font-size:.9rem;}
+.search-box input{flex:1;min-width:0;background:none;border:none;outline:none;font-size:1rem;font-weight:500;padding:9px 0;}
+.search-box input::placeholder{color:rgba(160,200,255,.3);}
+.main-btn{padding:12px 26px;border-radius:60px;font-weight:700;font-size:.85rem;cursor:pointer;border:none;display:inline-flex;align-items:center;gap:8px;justify-content:center;position:relative;overflow:hidden;transition:all .35s cubic-bezier(.175,.885,.32,1.275);}
+.main-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);transition:left .5s ease;}
+.main-btn:hover::before{left:100%;}
+.btn-primary{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#001018;box-shadow:0 4px 28px rgba(0,140,255,.22);}
+.btn-primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 10px 40px rgba(0,136,255,.38);}
+.btn-primary:disabled{opacity:.55;transform:none;cursor:default;}
+.btn-secondary{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:#fff;}
+.btn-secondary:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.2);}
+.btn-pink{background:linear-gradient(135deg,#ff3d8a,#c0237e);color:#fff;box-shadow:0 4px 28px rgba(255,61,138,.2);}
+.btn-pink:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 10px 40px rgba(255,61,138,.35);}
+.block{width:100%;}
+#status{font-family:'JetBrains Mono','Noto Sans Sinhala',monospace;font-size:.68rem;letter-spacing:.04em;color:var(--muted);min-height:20px;margin:12px 4px 14px;}
+#status.bad{color:#ff7a95;}
+
+/* RESULTS */
+#results{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media(min-width:600px){#results{grid-template-columns:repeat(3,1fr);gap:14px;}}
+@media(min-width:800px){#results{grid-template-columns:repeat(4,1fr);}}
+.mcard{background:rgba(5,12,24,.5);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.05);border-radius:18px;padding:8px 8px 12px;text-align:left;cursor:pointer;position:relative;overflow:hidden;display:block;width:100%;align-self:start;opacity:0;animation:cardIn .5s forwards;transition:transform .35s cubic-bezier(.175,.885,.32,1.275),border-color .3s,box-shadow .3s;}
+@keyframes cardIn{from{opacity:0;transform:translateY(-14px) scale(.97);}to{opacity:1;transform:none;}}
+.mcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:opacity .3s;z-index:2;}
+.mcard.adult-card::before{background:linear-gradient(90deg,transparent,var(--pink),transparent);}
+.mcard:hover,.mcard:focus-visible{transform:translateY(-5px);border-color:rgba(0,212,255,.2);box-shadow:0 14px 40px rgba(0,136,255,.12);}
+.mcard:hover::before{opacity:1;}
+.mcard .adult-badge{position:absolute;top:6px;right:6px;background:var(--pink);color:#fff;font-size:.55rem;font-weight:800;padding:2px 6px;border-radius:20px;letter-spacing:.06em;z-index:3;}
+.poster{aspect-ratio:2/3;border-radius:12px;overflow:hidden;background:linear-gradient(160deg,#0a1a30,#050d1a);display:flex;align-items:center;justify-content:center;position:relative;}
+.poster.wide{aspect-ratio:16/9;}
+.poster>i{position:absolute;font-size:1.8rem;color:rgba(0,212,255,.25);}
+.poster img{position:relative;width:100%;height:100%;object-fit:cover;display:block;}
+.mcard h3{font-size:.8rem;font-weight:700;color:#fff;margin:10px 4px 0;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.mcard .yr{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--cyan);margin:4px 4px 0;display:block;letter-spacing:.06em;}
+.mcard .dur{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);margin:2px 4px 0;display:block;}
+#more{display:none;margin:26px auto 0;}
+
+/* LOCKBAR */
+.lockbar{display:none;background:rgba(6,14,24,.6);border:1px solid rgba(255,190,60,.25);border-radius:18px;padding:16px 18px;margin:6px 0 4px;text-align:center;}
+.lockbar b{display:block;font-size:.95rem;margin-bottom:4px;}
+.lockbar p{font-size:.78rem;color:var(--muted);line-height:1.6;}
+.lockbar .meter{height:6px;border-radius:6px;background:rgba(255,255,255,.07);margin:12px auto 6px;max-width:260px;overflow:hidden;}
+.lockbar .meter i{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--blue),var(--cyan));transition:width .6s ease;}
+.lockbar small{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);}
+
+/* ADULT GATE */
+.adult-gate{display:none;background:rgba(6,10,20,.7);border:1px solid rgba(255,61,138,.2);border-radius:22px;padding:28px 22px;margin:8px 0;text-align:center;}
+.adult-gate.show{display:block;}
+.adult-gate .gate-icon{font-size:2.5rem;margin-bottom:12px;}
+.adult-gate h3{font-size:1.1rem;font-weight:800;margin-bottom:6px;}
+.adult-gate p{font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:20px;}
+.key-input-row{display:flex;gap:8px;max-width:400px;margin:0 auto;}
+.key-input-row .field{flex:1;font-family:'JetBrains Mono',monospace;letter-spacing:.08em;}
+
+/* POPUP */
+.popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);z-index:9999;align-items:flex-end;justify-content:center;}
+.popup-overlay.show{display:flex;animation:popFade .25s ease;}
+@keyframes popFade{from{opacity:0;}to{opacity:1;}}
+.popup-box{width:100%;max-width:460px;max-height:94dvh;overflow-y:auto;background:rgba(5,12,24,.96);border:1px solid var(--border);border-bottom:none;border-radius:26px 26px 0 0;padding:26px 22px 32px;position:relative;box-shadow:0 -20px 80px rgba(0,0,0,.8);animation:sheetUp .35s cubic-bezier(.175,.885,.32,1.275);}
+@keyframes sheetUp{from{transform:translateY(40px);opacity:0;}to{transform:none;opacity:1;}}
+@media(min-width:600px){.popup-overlay{align-items:center;}.popup-box{border-radius:26px;border-bottom:1px solid var(--border);}}
+.popup-box::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);}
+.popup-box.adult-box::before{background:linear-gradient(90deg,transparent,var(--pink),transparent);}
+.popup-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--border);color:rgba(255,255,255,.6);font-size:.9rem;cursor:pointer;transition:all .3s;}
+.popup-close:hover{background:rgba(255,255,255,.09);color:#fff;transform:rotate(90deg);}
+.m-head{display:flex;gap:14px;padding-right:34px;}
+.m-head .poster{width:92px;flex:none;border:1px solid var(--border);}
+.m-head h2{font-size:1.1rem;font-weight:800;line-height:1.25;margin-bottom:8px;color:#fff;}
+.m-meta{display:flex;flex-wrap:wrap;gap:6px;}
+.m-meta span{font-family:'JetBrains Mono','Noto Sans Sinhala',monospace;font-size:.62rem;color:var(--cyan);background:rgba(0,140,255,.08);border:1px solid rgba(0,160,255,.14);border-radius:30px;padding:3px 10px;}
+.m-meta span:empty{display:none;}
+.m-meta span.pink{color:var(--pink);background:rgba(255,61,138,.08);border-color:rgba(255,61,138,.18);}
+.lbl{display:block;font-family:'JetBrains Mono','Noto Sans Sinhala',monospace;font-size:.66rem;letter-spacing:.08em;color:var(--muted);margin:22px 0 10px;}
+.quals{display:flex;flex-wrap:wrap;gap:8px;}
+.srv-btn{padding:10px 18px;border-radius:60px;font-weight:700;font-size:.8rem;color:#fff;background:rgba(255,255,255,.04);border:1px solid var(--border);cursor:pointer;transition:all .3s cubic-bezier(.175,.885,.32,1.275);}
+.srv-btn:hover{transform:translateY(-2px);border-color:var(--cyan);}
+.srv-btn[aria-pressed="true"]{border-color:var(--cyan);background:rgba(0,180,255,.12);color:var(--cyan);box-shadow:0 6px 22px rgba(0,180,255,.12);}
+.srv-btn.pink-sel[aria-pressed="true"]{border-color:var(--pink);background:rgba(255,61,138,.1);color:var(--pink);box-shadow:0 6px 22px rgba(255,61,138,.1);}
+.field{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:16px;padding:13px 16px;font-size:.95rem;outline:none;transition:border-color .25s,background .25s;}
+.field:focus{border-color:var(--border-h);background:rgba(0,140,255,.05);}
+.field::placeholder{color:rgba(160,200,255,.3);}
+select.field{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--cyan) 50%),linear-gradient(135deg,var(--cyan) 50%,transparent 50%);background-position:calc(100% - 20px) 55%,calc(100% - 14px) 55%;background-size:6px 6px;background-repeat:no-repeat;}
+select.field option{background:#06121f;color:var(--text);}
+#err,#kerr,#aerr,#serr{min-height:20px;margin-top:12px;font-size:.78rem;color:#ff7a95;font-weight:500;}
+.popup-box .main-btn.block{margin-top:22px;padding:15px;}
+.done{text-align:center;}
+.done .ring{width:72px;height:72px;margin:6px auto 16px;padding:2.5px;}
+.done .ring-in i{font-size:1.7rem;background:linear-gradient(135deg,var(--green),#6effc4);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.done h2{font-size:1.4rem;font-weight:800;margin-bottom:4px;}
+.done p{font-size:.82rem;color:var(--muted);}
+.recap{margin-top:20px;background:rgba(6,14,24,.6);border:1px solid var(--border);border-radius:18px;padding:6px 16px;text-align:left;}
+.recap div{padding:11px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.recap div:last-child{border:none;}
+.recap small{display:block;font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;color:var(--muted);}
+.recap b{font-size:.95rem;font-weight:700;color:#fff;}
+.set-note{font-size:.72rem;color:var(--muted);line-height:1.6;margin-top:10px;}
+
+/* EPISODES (cartoon / kdrama) */
+.eps-head{display:flex;align-items:center;justify-content:space-between;margin:22px 0 10px;}
+.eps-head .lbl{margin:0;}
+.linkbtn{background:none;border:none;color:var(--cyan);font-size:.74rem;font-weight:600;cursor:pointer;padding:4px 2px;}
+.eps{max-height:240px;overflow-y:auto;border:1px solid var(--border);border-radius:16px;background:rgba(6,14,24,.5);}
+.ep{display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;font-size:.88rem;font-weight:600;}
+.ep:last-child{border-bottom:none;}
+.ep input{width:18px;height:18px;accent-color:#00c8ff;flex:none;}
+.ep small{margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);font-weight:400;}
+.ep-note{font-size:.72rem;color:var(--muted);margin-top:8px;}
+
+/* ADMIN PANEL */
+.admin-section{margin-top:22px;padding-top:18px;border-top:1px solid var(--border);}
+.admin-section h4{font-size:.8rem;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;}
+.admin-row{display:flex;gap:8px;margin-bottom:10px;}
+.admin-row .field{font-family:'JetBrains Mono',monospace;font-size:.85rem;letter-spacing:.06em;}
+.key-display{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(0,220,138,.06);border:1px solid rgba(0,220,138,.2);border-radius:12px;padding:10px 14px;color:#6effc4;margin-top:8px;word-break:break-all;display:none;}
+
+/* FOOTER */
+.footer-glass{background:rgba(4,10,20,.55);backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.04);border-radius:24px;padding:22px 20px;margin-top:40px;text-align:center;position:relative;overflow:hidden;}
+.footer-glass::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,180,255,.3),transparent);}
+.footer-links{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-bottom:12px;}
+.footer-links a,.footer-links button{color:rgba(255,255,255,.3);text-decoration:none;font-size:.73rem;background:none;border:none;cursor:pointer;transition:color .25s;}
+.footer-links a:hover,.footer-links button:hover{color:var(--cyan);}
+.footer-copy{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:rgba(255,255,255,.18);}
+
+/* MUSIC */
+.music-btn{position:fixed;bottom:22px;right:18px;width:46px;height:46px;border-radius:50%;background:rgba(3,9,22,.75);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);color:rgba(255,255,255,.55);font-size:.95rem;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:1000;transition:all .3s ease;bottom:calc(22px + env(safe-area-inset-bottom,0px));}
+.music-btn:hover{color:var(--cyan);border-color:rgba(0,180,255,.3);transform:scale(1.1);}
+.music-btn.playing{color:var(--cyan);animation:musicPulse 1.8s infinite;}
+@keyframes musicPulse{0%,100%{box-shadow:0 0 0 0 rgba(0,180,255,.12);}50%{box-shadow:0 0 0 12px rgba(0,180,255,0);}}
+
+@media(max-width:480px){.hero-title{font-size:2.2rem;}.splash-title{font-size:2.8rem;}.header-brand{font-size:.88rem;}.tabs{gap:5px;}.tab{padding:8px 12px;font-size:.72rem;}}
+@media(min-width:900px){.hero-title{font-size:3.6rem;}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}}
+</style>
+</head>
+<body>
+<div id="cfBox" style="position:fixed;left:50%;bottom:90px;transform:translateX(-50%);z-index:20000"></div>
+
+<canvas id="particleCanvas"></canvas>
+<div class="bg-layer"></div>
+
+<!-- SPLASH -->
+<div class="splash" id="splash">
+  <div class="splash-grid"></div>
+  <div class="splash-content">
+    <div class="ring"><div class="ring-in"><i class="fas fa-film"></i></div></div>
+    <div class="splash-title"><span class="z">DESHAN</span> MD</div>
+    <div class="splash-bar"></div>
+    <div class="splash-sub">🎬 Movie Request System</div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="glass-header">
+  <div class="header-left">
+    <div class="ring hdr-logo-ring"><div class="ring-in">
+      <img src="https://files.catbox.moe/2aeisf.png" alt="Deshan" onerror="this.remove()"/>
+    </div></div>
+    <span class="header-brand"><span class="b">DESHAN</span> MD</span>
+  </div>
+</header>
+
+<div class="container" id="mainContainer">
+
+  <section class="hero">
+    <div class="hero-badge"><span class="pulse off" id="botDot"></span><span id="botState">Movie Request</span></div>
+    <h1 class="hero-title">Movie <span class="blue">Request</span></h1>
+    <p class="hero-sub">Movie · KDrama · Cartoon · Songs · Adult — ඔයාගේ WhatsApp group එකටම request කරන්න.</p>
+    <div class="hero-tags">
+      <span class="htag"><i class="fas fa-bolt"></i> Auto send to group</span>
+      <span class="htag"><i class="fas fa-layer-group"></i> Multi source</span>
+      <span class="htag"><i class="fas fa-user"></i> Your name on it</span>
+    </div>
+  </section>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab" id="tabMovie" aria-pressed="true"><i class="fas fa-film"></i> Movies</button>
+    <button class="tab" id="tabDinka" aria-pressed="false"><i class="fas fa-clapperboard"></i> Dinka 🎬</button>
+    <button class="tab" id="tabKdrama" aria-pressed="false"><i class="fas fa-tv"></i> KDrama</button>
+    <button class="tab" id="tabCartoon" aria-pressed="false"><i class="fas fa-cat"></i> Cartoons <i class="fas fa-lock tab-lock-icon" id="tabLock" style="display:none"></i></button>
+    <button class="tab" id="tabSong" aria-pressed="false"><i class="fas fa-music"></i> Songs</button>
+    <button class="tab adult-tab" id="tabAdult" aria-pressed="false"><i class="fas fa-lock"></i> Adult <span style="font-size:.6rem;opacity:.7">18+</span></button>
+  </div>
+
+  <!-- CARTOON LOCK / ADULT GATE -->
+  <div class="lockbar" id="lockBar">
+    <b><i class="fas fa-lock"></i> Cartoons තවම lock වෙලා</b>
+    <p id="lockMsg"></p>
+    <div class="meter"><i id="lockFill"></i></div>
+    <small id="lockCount"></small>
+  </div>
+
+  <!-- ADULT GATE -->
+  <div class="adult-gate" id="adultGate">
+    <div class="gate-icon">🔞</div>
+    <h3>Adult Section — Paid Access</h3>
+    <p>මේ section එකට access කරන්න valid access key එකක් ඕන.<br/>Key එකක් ගන්න admin ව contact කරන්න.</p>
+    <div class="key-input-row">
+      <input class="field" id="adultKeyIn" type="password" placeholder="XXXX-XXXX-XXXX" autocomplete="off" maxlength="32"/>
+      <button class="main-btn btn-pink" id="adultKeyBtn" style="white-space:nowrap;padding:12px 18px;"><i class="fas fa-unlock"></i> Unlock</button>
+    </div>
+    <div id="keyErr" style="margin-top:10px;font-size:.78rem;color:#ff7a95;font-weight:500;min-height:20px;"></div>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-box" id="searchBox">
+    <i class="fas fa-search lead"></i>
+    <input id="q" type="search" placeholder="Movie name එක දෙන්න…" autocomplete="off" enterkeyhint="search" aria-label="Search"/>
+    <button class="main-btn btn-primary" id="goBtn">Search</button>
+  </div>
+  <div id="status" role="status"></div>
+  <div id="results"></div>
+  <button class="main-btn btn-secondary" id="more">Load more <i class="fas fa-chevron-down"></i></button>
+
+  <footer class="footer-glass">
+    <div class="footer-links">
+      <a href="https://wa.me/94726449894" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Contact Admin</a>
+      <a href="https://www.facebook.com/profile.php?id=61583156821407" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i> Facebook</a>
+    </div>
+    <div class="footer-copy" id="footCopy">© 2026 DESHAN MD · Powered by DESHAN TECH OFC</div>
+  </footer>
+
+</div><!-- /container -->
+
+<!-- ═══ MOVIE POPUP ═══ -->
+<div class="popup-overlay" id="veil">
+  <div class="popup-box">
+    <button class="popup-close" id="closeBtn" aria-label="Close"><i class="fas fa-xmark"></i></button>
+    <div id="formView">
+      <div class="m-head">
+        <div class="poster"><i class="fas fa-film"></i><img id="mImg" alt="" style="display:none"/></div>
+        <div><h2 id="mTitle"></h2><div class="m-meta"><span id="mYear"></span><span id="mImdb"></span><span id="mRuntime"></span><span id="mGenres"></span></div></div>
+      </div>
+      <span class="lbl">QUALITY</span>
+      <div class="quals" id="quals">
+        <button class="srv-btn" aria-pressed="false">SD</button>
+        <button class="srv-btn" aria-pressed="true">HD</button>
+        <button class="srv-btn" aria-pressed="false">FHD 1080p</button>
+        <button class="srv-btn" aria-pressed="false">4K</button>
+      </div>
+      <label class="lbl" for="who">ඔයාගේ නම</label>
+      <input class="field" id="who" type="text" placeholder="උදා: DESHAN" autocomplete="name" maxlength="30"/>
+      <button class="main-btn btn-primary block" id="sendBtn"><i class="fas fa-paper-plane"></i> Group එකට request කරන්න</button>
+      <div id="err" role="alert"></div>
+    </div>
+    <div class="done" id="doneView" style="display:none">
+      <div class="ring"><div class="ring-in"><i class="fas fa-check"></i></div></div>
+      <h2>Request යැව්වා!</h2>
+      <p>Film එක ලෑස්ති වෙනකම් group එක බලන්න.</p>
+      <div class="recap">
+        <div><small>MOVIE</small><b id="dTitle"></b></div>
+        <div><small>QUALITY</small><b id="dQuality"></b></div>
+        <div><small>REQUESTED BY</small><b id="dWho"></b></div>
+      </div>
+      <button class="main-btn btn-secondary block" id="againBtn">තව movie එකක් හොයන්න</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ KDRAMA POPUP ═══ -->
+<div class="popup-overlay" id="kVeil">
+  <div class="popup-box">
+    <button class="popup-close" id="kClose" aria-label="Close"><i class="fas fa-xmark"></i></button>
+    <div id="kFormView">
+      <div class="m-head">
+        <div class="poster"><i class="fas fa-tv"></i><img id="kImg" alt="" style="display:none"/></div>
+        <div><h2 id="kTitle"></h2><div class="m-meta"><span id="kYear"></span><span id="kEpCount"></span></div></div>
+      </div>
+
+      <div id="kLoading" style="padding:20px 0;text-align:center;color:var(--muted);font-size:.85rem">Episodes load වෙනවා…</div>
+
+      <div id="kEpSection" style="display:none">
+        <span class="lbl">QUALITY</span>
+        <select class="field" id="kPref"></select>
+        <div class="eps-head">
+          <span class="lbl">EPISODES</span>
+          <button class="linkbtn" id="kAll">සියල්ල තෝරන්න</button>
+        </div>
+        <div class="eps" id="kEps"></div>
+        <div class="ep-note" id="kNote"></div>
+      </div>
+
+      <div id="kDirectSection" style="display:none">
+        <span class="lbl">QUALITY</span>
+        <div class="quals" id="kQuals">
+          <button class="srv-btn" aria-pressed="false">SD</button>
+          <button class="srv-btn" aria-pressed="true">HD</button>
+          <button class="srv-btn" aria-pressed="false">FHD 1080p</button>
+        </div>
+      </div>
+
+      <label class="lbl" for="kWho">ඔයාගේ නම</label>
+      <input class="field" id="kWho" type="text" placeholder="උදා: DESHAN" autocomplete="name" maxlength="30"/>
+      <button class="main-btn btn-primary block" id="kSend" style="display:none"><i class="fas fa-paper-plane"></i> Group එකට request කරන්න</button>
+      <div id="kerr" role="alert"></div>
+    </div>
+    <div class="done" id="kDone" style="display:none">
+      <div class="ring"><div class="ring-in"><i class="fas fa-check"></i></div></div>
+      <h2>Request යැව්වා!</h2>
+      <p>Episodes group එකට ගලාගෙන එනවා. ටිකක් ඉන්න.</p>
+      <div class="recap">
+        <div><small>KDRAMA</small><b id="dkTitle"></b></div>
+        <div><small>EPISODES</small><b id="dkEps"></b></div>
+        <div><small>REQUESTED BY</small><b id="dkWho"></b></div>
+      </div>
+      <button class="main-btn btn-secondary block" id="kAgain">තව KDrama එකක් හොයන්න</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CARTOON POPUP ═══ -->
+<div class="popup-overlay" id="cVeil">
+  <div class="popup-box">
+    <button class="popup-close" id="cClose" aria-label="Close"><i class="fas fa-xmark"></i></button>
+    <div class="m-head">
+      <div class="poster"><i class="fas fa-cat"></i><img id="cImg" alt=""/></div>
+      <div><h2 id="cTitle"></h2><div class="m-meta"><span id="cCount"></span></div></div>
+    </div>
+    <div id="cLoading" style="padding:26px 0;text-align:center;color:var(--muted);font-size:.85rem">Episodes load වෙනවා…</div>
+    <div id="cForm" style="display:none">
+      <span class="lbl">QUALITY / SERVER</span>
+      <select class="field" id="cPref"></select>
+      <div class="eps-head">
+        <span class="lbl">EPISODES</span>
+        <button class="linkbtn" id="cAll">සියල්ල තෝරන්න</button>
+      </div>
+      <div class="eps" id="cEps"></div>
+      <div class="ep-note" id="cNote"></div>
+      <label class="lbl" for="cWho">ඔයාගේ නම</label>
+      <input class="field" id="cWho" type="text" placeholder="උදා: DESHAN" autocomplete="name" maxlength="30"/>
+      <button class="main-btn btn-primary block" id="cSend"><i class="fas fa-paper-plane"></i> Group එකට request කරන්න</button>
+    </div>
+    <div id="cErr" role="alert" style="min-height:20px;margin-top:12px;font-size:.78rem;color:#ff7a95;font-weight:500"></div>
+    <div class="done" id="cDone" style="display:none">
+      <div class="ring"><div class="ring-in"><i class="fas fa-check"></i></div></div>
+      <h2>Request යැව්වා!</h2>
+      <p>Episodes group එකට ගලාගෙන එනවා.</p>
+      <div class="recap">
+        <div><small>CARTOON</small><b id="dcTitle"></b></div>
+        <div><small>EPISODES</small><b id="dcEps"></b></div>
+        <div><small>REQUESTED BY</small><b id="dcWho"></b></div>
+      </div>
+      <button class="main-btn btn-secondary block" id="cAgain">තව එකක් හොයන්න</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SONG POPUP ═══ -->
+<div class="popup-overlay" id="sVeil">
+  <div class="popup-box">
+    <button class="popup-close" id="sClose" aria-label="Close"><i class="fas fa-xmark"></i></button>
+    <div id="sFormView">
+      <div class="m-head">
+        <div class="poster"><i class="fas fa-music"></i><img id="sImg" alt="" style="display:none"/></div>
+        <div><h2 id="sTitle"></h2><div class="m-meta"><span id="sArtist"></span><span id="sDur"></span></div></div>
+      </div>
+      <label class="lbl" for="sWho">ඔයාගේ නම</label>
+      <input class="field" id="sWho" type="text" placeholder="උදා: DESHAN" autocomplete="name" maxlength="30"/>
+      <label class="lbl" for="sPhone">ඔයාගේ WhatsApp Number (94XXXXXXXXX)</label>
+      <input class="field" id="sPhone" type="tel" placeholder="94712345678" autocomplete="tel" maxlength="15"/>
+      <p class="set-note" style="margin-top:8px;"><i class="fas fa-info-circle" style="color:var(--cyan)"></i> Song MP3 ඔයාගේ WhatsApp DM එකට private ව එනවා.</p>
+      <button class="main-btn btn-primary block" id="sSend"><i class="fas fa-paper-plane"></i> DM ෙ ඉල්ලන්න</button>
+      <div id="serr" role="alert"></div>
+    </div>
+    <div class="done" id="sDone" style="display:none">
+      <div class="ring"><div class="ring-in"><i class="fas fa-check"></i></div></div>
+      <h2>Request යැව්වා!</h2>
+      <p>Song එක group/DM එකට ලෑස්ති කරනවා.</p>
+      <div class="recap">
+        <div><small>SONG</small><b id="dsTitle"></b></div>
+        <div><small>SENT TO</small><b id="dsPhone"></b></div>
+        <div><small>REQUESTED BY</small><b id="dsWho"></b></div>
+      </div>
+      <button class="main-btn btn-secondary block" id="sAgain">තව song එකක් හොයන්න</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ADULT VIDEO POPUP ═══ -->
+<div class="popup-overlay" id="aVeil">
+  <div class="popup-box adult-box">
+    <button class="popup-close" id="aClose" aria-label="Close"><i class="fas fa-xmark"></i></button>
+    <div id="aFormView">
+      <div class="m-head">
+        <div class="poster wide"><i class="fas fa-play-circle"></i><img id="aImg" alt="" style="display:none"/></div>
+        <div>
+          <div style="font-size:.6rem;font-weight:700;color:var(--pink);letter-spacing:.1em;margin-bottom:6px;">🔞 ADULT</div>
+          <h2 id="aTitle"></h2>
+          <div class="m-meta"><span id="aDur" class="pink"></span><span id="aViews"></span><span id="aUploader"></span></div>
+        </div>
+      </div>
+      <span class="lbl">QUALITY</span>
+      <div class="quals" id="aQuals">
+        <button class="srv-btn pink-sel" aria-pressed="false">240p</button>
+        <button class="srv-btn pink-sel" aria-pressed="true">480p</button>
+        <button class="srv-btn pink-sel" aria-pressed="false">720p</button>
+      </div>
+      <label class="lbl" for="aWho">ඔයාගේ නම</label>
+      <input class="field" id="aWho" type="text" placeholder="උදා: DESHAN" autocomplete="name" maxlength="30"/>
+      <label class="lbl" for="aPhone">ඔයාගේ WhatsApp Number (94XXXXXXXXX)</label>
+      <input class="field" id="aPhone" type="tel" placeholder="94712345678" autocomplete="tel" maxlength="15"/>
+      <p class="set-note" style="margin-top:8px;"><i class="fas fa-info-circle" style="color:var(--pink)"></i> Video එක ඔයාගේ WhatsApp DM එකට private ව එනවා. Group ෙ show නොවෙයි.</p>
+      <button class="main-btn btn-pink block" id="aSend"><i class="fas fa-paper-plane"></i> DM ෙ ඉල්ලන්න</button>
+      <div id="aerr" role="alert"></div>
+    </div>
+    <div class="done" id="aDone" style="display:none">
+      <div class="ring"><div class="ring-in" style="background:rgba(255,61,138,.08);"><i class="fas fa-check" style="color:var(--pink)!important;background:none!important;-webkit-background-clip:unset!important;"></i></div></div>
+      <h2>Request යැව්වා! 🔞</h2>
+      <p>Video එක ඔයාගේ WhatsApp DM ෙ ලෑස්ති කරනවා.</p>
+      <div class="recap">
+        <div><small>VIDEO</small><b id="daTitle"></b></div>
+        <div><small>QUALITY</small><b id="daQ"></b></div>
+        <div><small>SENT TO</small><b id="daPhone"></b></div>
+      </div>
+      <button class="main-btn btn-secondary block" id="aAgain">තව video එකක් හොයන්න</button>
+    </div>
+  </div>
+</div>
+
+<!-- MUSIC -->
+<button class="music-btn" id="musicControl" aria-label="Music"><i class="fas fa-music" id="musicIcon"></i></button>
+<audio id="bgMusic" loop preload="auto"><source src="https://files.catbox.moe/5zx7hg.mp3" type="audio/mpeg"/></audio>
+
+<script>
+// ══════════════════════════════════════════
+// CORE
+// ══════════════════════════════════════════
+const API_BASE = location.protocol.startsWith('http') ? location.origin + '/code' : '';
+
+// ── HUMAN CHECK (CAPTCHA / session token for every request-* POST) ──
+const _fetch = window.fetch.bind(window);
+let HUMAN = { mode: 'none', at: 0 }, cfId = null, cfPending = null;
+async function initHuman(){
+  try{ const r = await _fetch(`${API_BASE}/session`); const d = await r.json(); HUMAN = Object.assign({ at: Date.now() }, d); }catch(_){}
+  if(HUMAN.mode === 'turnstile' && !window.turnstile && !document.getElementById('cfScript')){
+    const s = document.createElement('script'); s.id = 'cfScript'; s.async = true; s.defer = true;
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'; document.head.appendChild(s);
+  }
+}
+async function getHuman(){
+  if(HUMAN.mode === 'none' || (HUMAN.mode === 'token' && Date.now() - HUMAN.at > 25 * 60e3)) await initHuman();
+  if(HUMAN.mode === 'token') return { headers: { 'X-Req-Token': HUMAN.token }, body: {} };
+  if(HUMAN.mode === 'turnstile'){
+    for(let i = 0; i < 40 && !window.turnstile; i++) await new Promise(r => setTimeout(r, 250));
+    if(!window.turnstile) return { headers: {}, body: {} };
+    return new Promise(resolve => {
+      const done = t => { if(cfPending){ clearTimeout(cfPending.timer); cfPending = null; resolve({ headers: {}, body: { cf_token: t || '' } }); } };
+      cfPending = { timer: setTimeout(() => done(''), 60000) };
+      if(cfId === null) cfId = window.turnstile.render(document.getElementById('cfBox'), { sitekey: HUMAN.sitekey, execution: 'execute', appearance: 'interaction-only', callback: done, 'error-callback': () => done(''), 'timeout-callback': () => done('') });
+      else window.turnstile.reset(cfId);
+      window.turnstile.execute(cfId);
+    });
+  }
+  return { headers: {}, body: {} };
+}
+window.fetch = async (url, opts) => {
+  try{
+    if(opts && opts.method === 'POST' && /\/request-(movie|kdrama|cartoon|song|adult)$/.test(String(url))){
+      const h = await getHuman();
+      opts = Object.assign({}, opts, { headers: Object.assign({}, opts.headers || {}, h.headers) });
+      if(h.body.cf_token !== undefined){ const b = JSON.parse(opts.body || '{}'); b.cf_token = h.body.cf_token; opts.body = JSON.stringify(b); }
+    }
+  }catch(_){}
+  return _fetch(url, opts);
+};
+initHuman();
+// ── END HUMAN CHECK ──
+let savedName = localStorage.getItem('movieRequesterName') || '';
+
+// Adult access key
+let adultKey     = localStorage.getItem('adultKey') || null;
+let adultExpiry  = parseInt(localStorage.getItem('adultKeyExpiry') || '0');
+let adultUnlocked = adultKey && Date.now() < adultExpiry;
+
+const $ = id => document.getElementById(id);
+const statusEl = $('status'), resultsEl = $('results');
+let page = 1, query = '', quality = 'HD', songFmt = '🎵 MP3', aQuality = '480p';
+let mode = 'movie';
+let picked = null, kPicked = null, sPicked = null, aPicked = null;
+let cartoonUnlocked = false;
+
+function say(msg, bad){ statusEl.textContent = msg; statusEl.className = bad ? 'bad' : ''; }
+function esc(s){ return String(s).replace(/[&<>"'`]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','`':'&#96;'}[c])); }
+function openSettings(){ say('Server config එකේ ප්‍රශ්නයක්. Admin ව contact කරන්න.', true); }
+
+// ── SPLASH ──
+(function(){
+  const splash = $('splash'), box = $('mainContainer');
+  const seen = sessionStorage.getItem('splashSeen');
+  const delay = seen ? 0 : 1500;
+  if(seen){ splash.style.display = 'none'; }
+  setTimeout(() => { splash.classList.add('out'); box.classList.add('visible'); sessionStorage.setItem('splashSeen','1'); }, delay);
+  setTimeout(() => splash.remove(), delay + 800);
+})();
+
+// ── PARTICLES ──
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const c = $('particleCanvas'), x = c.getContext('2d');
+  let W, H, dots = [];
+  function size(){ W = c.width = innerWidth; H = c.height = innerHeight; }
+  size(); addEventListener('resize', size);
+  for(let i = 0; i < 38; i++) dots.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.5+.4,vx:(Math.random()-.5)*.18,vy:(Math.random()-.5)*.18,a:Math.random()*.4+.1});
+  (function tick(){
+    x.clearRect(0,0,W,H);
+    dots.forEach(d=>{
+      d.x+=d.vx; d.y+=d.vy;
+      if(d.x<0)d.x=W; if(d.x>W)d.x=0; if(d.y<0)d.y=H; if(d.y>H)d.y=0;
+      x.beginPath(); x.arc(d.x,d.y,d.r,0,6.283); x.fillStyle=`rgba(0,190,255,${d.a})`; x.fill();
+    });
+    requestAnimationFrame(tick);
+  })();
+})();
+
+// ── BOT STATUS ──
+(async function(){
+  if(!API_BASE) return;
+  try{
+    const r = await fetch(`${API_BASE}/movie-status`);
+    const d = await r.json();
+    $('botDot').className = d.online ? 'pulse' : 'pulse off';
+    $('botState').textContent = d.online ? 'Bot online' : 'Bot offline';
+  }catch(_){}
+})();
+
+// ══════════════════════════════════════════
+// TABS
+// ══════════════════════════════════════════
+function setMode(m){
+  mode = m;
+  ['movie','dinka','kdrama','cartoon','song','adult'].forEach(t => {
+    const el = $('tab'+t.charAt(0).toUpperCase()+t.slice(1));
+    if(el) el.setAttribute('aria-pressed', t === m);
+  });
+  $('q').value = ''; resultsEl.innerHTML = ''; $('more').style.display = 'none'; say('');
+  $('lockBar').style.display = 'none';
+  $('adultGate').classList.remove('show');
+  $('searchBox').style.display = '';
+
+  const placeholders = {movie:'Movie name එක ලියන්න…',dinka:'Dinka movie name ලියන්න… (සිංහල)',kdrama:'KDrama name එක ලියන්න…',cartoon:'Cartoon name එක ලියන්න…',song:'Song / Artist name ලියන්න…',adult:'Video / keyword search කරන්න…'};
+  $('q').placeholder = placeholders[m] || 'Search…';
+
+  if(m === 'cartoon') loadCartoonStatus();
+  if(m === 'adult'){
+    if(!adultUnlocked){
+      $('searchBox').style.display = 'none';
+      $('adultGate').classList.add('show');
+    }
+  }
+}
+$('tabMovie').onclick    = () => setMode('movie');
+$('tabDinka').onclick    = () => setMode('dinka');
+$('tabKdrama').onclick   = () => setMode('kdrama');
+$('tabCartoon').onclick  = () => setMode('cartoon');
+$('tabSong').onclick     = () => setMode('song');
+$('tabAdult').onclick    = () => setMode('adult');
+
+// ══════════════════════════════════════════
+// NORMALIZE / SEARCH HELPERS
+// ══════════════════════════════════════════
+function pick(o,keys,d){ for(const k of keys){ if(o&&o[k]!=null&&o[k]!=='') return o[k]; } return d; }
+function normalize(it){
+  const rawTitle = String(pick(it,['title','name','movie_title'],''));
+  return {
+    title:   rawTitle.replace(/\s*Sinhala\s*Subtitle.*$/i,'').replace(/\s*\|.*$/,'').trim()||'Untitled',
+    img:     pick(it,['img','image','poster','thumbnail','thumb','cover'],''),
+    url:     pick(it,['url','link','download_url','page_url','href'],''),
+    date:    pick(it,['date','year','release_date','releaseYear'],''),
+    genres:  Array.isArray(it&&it.genres)?it.genres.join(', '):pick(it,['genres','genre','category'],''),
+    imdb:    pick(it,['imdb','rating','imdb_rating'],''),
+    runtime: pick(it,['runtime','duration'],'')
+  };
+}
+function listOf(d){
+  if(Array.isArray(d)) return d;
+  if(!d||typeof d!=='object') return [];
+  for(const k of ['result','results','data','movies','items']){
+    if(Array.isArray(d[k])) return d[k];
+    if(d[k]&&Array.isArray(d[k].results)) return d[k].results;
+  }
+  return [];
+}
+
+// Universal search dispatcher
+function search(fresh){
+  if(mode==='movie')   return searchMovie(fresh);
+  if(mode==='dinka')   return searchDinka(fresh);
+  if(mode==='kdrama')  return searchKdrama(fresh);
+  if(mode==='cartoon') return searchCartoon();
+  if(mode==='song')    return searchSong(fresh);
+  if(mode==='adult')   return searchAdult(fresh);
+}
+$('goBtn').onclick = () => search(true);
+$('q').addEventListener('keydown', e => { if(e.key==='Enter') search(true); });
+$('more').onclick = () => { page++; search(false); };
+
+// ══════════════════════════════════════════
+// 🎬 MOVIE
+// ══════════════════════════════════════════
+async function searchMovie(fresh){
+  if(!API_BASE){ openSettings(); return; }
+  const q = $('q').value.trim();
+  if(fresh && !q){ say('Movie name එකක් ලියන්න.',true); return; }
+  if(fresh){ page=1; query=q; resultsEl.innerHTML=''; }
+  $('more').style.display='none'; $('goBtn').disabled=true; say('SEARCHING…');
+  try{
+    const r = await fetch(`${API_BASE}/movie-search?q=${encodeURIComponent(query)}&page=${page}`);
+    const data = await r.json();
+    const items = listOf(data).map(normalize);
+    if(page===1&&!items.length){ say(`"${query}" ට result නෑ.`,true); return; }
+    if(!items.length){ say('තව results නෑ.'); return; }
+    say(page===1?`${items.length} RESULTS`:'');
+    items.forEach((m,i)=>{
+      const b = document.createElement('button');
+      b.className='mcard'; b.style.animationDelay=(Math.min(i,8)*0.05)+'s';
+      const showYear = m.date&&!m.title.includes(String(m.date));
+      b.innerHTML=`<div class="poster"><i class="fas fa-film"></i>${m.img?`<img src="${esc(m.img)}" alt="" loading="lazy">`:''}
+      </div><h3>${esc(m.title)}</h3>${showYear?`<span class="yr">${esc(m.date)}</span>`:''}`;
+      const im=b.querySelector('img'); if(im) im.onerror=()=>im.remove();
+      b.onclick=()=>openPopup(m); resultsEl.appendChild(b);
+    });
+    $('more').style.display='inline-flex';
+  }catch(e){ say('Server connect වෙන්න බැරි වුණා.',true); }
+  finally{ $('goBtn').disabled=false; }
+}
+
+function setQuality(q){
+  quality=q;
+  document.querySelectorAll('#quals .srv-btn').forEach(c=>c.setAttribute('aria-pressed',c.textContent===q));
+}
+document.querySelectorAll('#quals .srv-btn').forEach(c=>c.onclick=()=>setQuality(c.textContent));
+
+function openPopup(m){
+  picked=m;
+  $('formView').style.display=''; $('doneView').style.display='none';
+  const im=$('mImg'); im.style.display=''; im.src=m.img||''; im.onerror=()=>im.style.display='none';
+  $('mTitle').textContent=m.title; $('mYear').textContent=m.date||''; $('mImdb').textContent=m.imdb?`IMDb ${m.imdb}`:'';
+  $('mRuntime').textContent=m.runtime||''; $('mGenres').textContent=m.genres||'';
+  $('who').value=savedName; $('err').textContent=''; setQuality('HD');
+  $('veil').classList.add('show');
+}
+function closePopup(){ $('veil').classList.remove('show'); }
+$('closeBtn').onclick=closePopup;
+$('againBtn').onclick=()=>{ closePopup(); window.scrollTo({top:0,behavior:'smooth'}); $('q').focus(); };
+$('veil').onclick=e=>{ if(e.target.id==='veil') closePopup(); };
+
+const sendLabel='<i class="fas fa-paper-plane"></i> Group එකට request කරන්න';
+$('sendBtn').onclick=async()=>{
+  const who=$('who').value.trim(), err=$('err');
+  if(!who){ err.textContent='ඔයාගේ නම ලියන්න.'; $('who').focus(); return; }
+  if(!picked.url){ err.textContent='Download link නෑ. වෙන movie එකක් තෝරන්න.'; return; }
+  savedName=who; localStorage.setItem('movieRequesterName',who);
+  const btn=$('sendBtn'); btn.disabled=true; btn.textContent='යවනවා…'; err.textContent='';
+  try{
+    const r=await fetch(`${API_BASE}/request-movie`,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({title:picked.title,url:picked.url,quality_label:quality,img:picked.img,date:picked.date,genres:picked.genres,imdb:picked.imdb,runtime:picked.runtime,requester:who})});
+    const d=await r.json();
+    if(d.success){ $('dTitle').textContent=picked.title; $('dQuality').textContent=quality; $('dWho').textContent=who; $('formView').style.display='none'; $('doneView').style.display=''; }
+    else err.textContent=d.message||'Request fail උනා.';
+  }catch(e){ err.textContent='Server connect වෙන්න බැරි වුණා.'; }
+  finally{ btn.disabled=false; btn.innerHTML=sendLabel; }
+};
+
+// ══════════════════════════════════════════
+// 🎬 DINKA MOVIES (සිංහල හඬකැවූ)
+// ══════════════════════════════════════════
+async function searchDinka(fresh){
+  if(!API_BASE){ openSettings(); return; }
+  const q=$('q').value.trim();
+  if(fresh&&!q){ say('Dinka movie name ලියන්න.',true); return; }
+  if(fresh){ page=1; query=q; resultsEl.innerHTML=''; }
+  $('more').style.display='none'; $('goBtn').disabled=true; say('SEARCHING DINKA…');
+  try{
+    const r=await fetch(`${API_BASE}/dinka-search?q=${encodeURIComponent(query)}&page=${page}`);
+    const data=await r.json();
+    const raw=Array.isArray(data)?data:(data.data||data.results||[]);
+    const items=raw.map(m=>({
+      title: m.title||'Unknown',
+      img:   m.poster||m.img||'',
+      url:   m.url||m.link||'',
+      date:  m.year||m.date||'',
+      genres:'Sinhala Dubbed',
+    }));
+    if(page===1&&!items.length){ say(`"${query}" ට Dinka result නෑ.`,true); return; }
+    if(!items.length){ say('තව results නෑ.'); return; }
+    say(page===1?`${items.length} DINKA RESULTS`:'');
+    items.forEach((m,i)=>{
+      const b=document.createElement('button');
+      b.className='mcard'; b.style.animationDelay=(Math.min(i,8)*0.05)+'s';
+      b.innerHTML=`<div class="poster"><i class="fas fa-film"></i>${m.img?`<img src="${esc(m.img)}" alt="" loading="lazy">`:''}
+      </div><div style="position:absolute;top:6px;left:6px;background:linear-gradient(135deg,#ff8c00,#ff6200);color:#fff;font-size:.5rem;font-weight:800;padding:2px 6px;border-radius:20px;letter-spacing:.06em;">🎬 DINKA</div>
+      <h3>${esc(m.title)}</h3>${m.date?`<span class="yr">${esc(m.date)}</span>`:''}`;
+      const im=b.querySelector('img'); if(im) im.onerror=()=>im.remove();
+      b.onclick=()=>openPopup(m); resultsEl.appendChild(b);
+    });
+    $('more').style.display='inline-flex';
+  }catch(e){ say('Dinka server connect වෙන්න බැරි වුණා.',true); }
+  finally{ $('goBtn').disabled=false; }
+}
+
+// ══════════════════════════════════════════
+// 🎭 KDRAMA
+// ══════════════════════════════════════════
+let kSess=null;
+async function searchKdrama(fresh){
+  if(!API_BASE){ openSettings(); return; }
+  const q=$('q').value.trim();
+  if(fresh&&!q){ say('KDrama name එකක් ලියන්න.',true); return; }
+  if(fresh){ page=1; query=q; resultsEl.innerHTML=''; }
+  $('more').style.display='none'; $('goBtn').disabled=true; say('SEARCHING…');
+  try{
+    const r=await fetch(`${API_BASE}/kdrama-search?q=${encodeURIComponent(query)}&page=${page}`);
+    const data=await r.json();
+    const items=listOf(data).map(normalize);
+    if(page===1&&!items.length){ say(`"${query}" ට result නෑ.`,true); return; }
+    if(!items.length){ say('තව results නෑ.'); return; }
+    say(page===1?`${items.length} RESULTS`:'');
+    items.forEach((m,i)=>{
+      const b=document.createElement('button');
+      b.className='mcard'; b.style.animationDelay=(Math.min(i,8)*0.05)+'s';
+      b.innerHTML=`<div class="poster"><i class="fas fa-tv"></i>${m.img?`<img src="${esc(m.img)}" alt="" loading="lazy">`:''}
+      </div><h3>${esc(m.title)}</h3>${m.date?`<span class="yr">${esc(m.date)}</span>`:''}`;
+      const im=b.querySelector('img'); if(im) im.onerror=()=>im.remove();
+      b.onclick=()=>openKdrama(m); resultsEl.appendChild(b);
+    });
+    $('more').style.display='inline-flex';
+  }catch(e){ say('Server connect වෙන්න බැරි වුණා.',true); }
+  finally{ $('goBtn').disabled=false; }
+}
+
+async function openKdrama(m){
+  kSess=null; kPicked=m;
+  $('kTitle').textContent=m.title; $('kYear').textContent=m.date||''; $('kEpCount').textContent='';
+  const im=$('kImg'); im.style.display=''; im.src=m.img||''; im.onerror=()=>im.style.display='none';
+  $('kFormView').style.display=''; $('kDone').style.display='none';
+  $('kerr').textContent=''; $('kWho').value=savedName;
+  $('kLoading').style.display=''; $('kEpSection').style.display='none'; $('kDirectSection').style.display='none'; $('kSend').style.display='none';
+  $('kVeil').classList.add('show');
+
+  try{
+    const r=await fetch(`${API_BASE}/kdrama-episodes?url=${encodeURIComponent(m.url)}`);
+    const d=await r.json();
+    $('kLoading').style.display='none';
+    if(d.success&&d.episodes&&d.episodes.length){
+      kSess=d;
+      $('kEpCount').textContent=`${d.episodes.length} episodes`;
+      $('kPref').innerHTML='<option value="">Auto (හොඳම එක)</option>'+(d.labels||[]).map(l=>`<option>${esc(l)}</option>`).join('');
+      $('kEps').innerHTML=d.episodes.map(e=>`<label class="ep"><input type="checkbox" value="${e.idx}"><span>${esc(e.name)}</span><small>${e.links||1} link${(e.links||1)>1?'s':''}</small></label>`).join('');
+      $('kNote').textContent=`One time max episodes: ${d.maxEpisodes||12}`;
+      $('kAll').textContent='සියල්ල තෝරන්න'; $('kEpSection').style.display=''; $('kSend').style.display='';
+    } else {
+      // No episode structure — simple quality popup
+      $('kDirectSection').style.display=''; $('kSend').style.display='';
+      setKQuality('HD');
+    }
+  }catch(e){
+    $('kLoading').style.display='none';
+    $('kDirectSection').style.display=''; $('kSend').style.display='';
+  }
+}
+
+function setKQuality(q){
+  document.querySelectorAll('#kQuals .srv-btn').forEach(c=>c.setAttribute('aria-pressed',c.textContent===q));
+}
+document.querySelectorAll('#kQuals .srv-btn').forEach(c=>c.onclick=()=>setKQuality(c.textContent));
+
+$('kAll').onclick=()=>{
+  const boxes=[...document.querySelectorAll('#kEps input')];
+  const max=kSess?kSess.maxEpisodes||12:12;
+  const allOn=boxes.slice(0,max).every(b=>b.checked);
+  boxes.forEach((b,i)=>b.checked=allOn?false:i<max);
+  $('kAll').textContent=allOn?'සියල්ල තෝරන්න':'ඔක්කොම අයින් කරන්න';
+};
+
+const kSendLabel='<i class="fas fa-paper-plane"></i> Group එකට request කරන්න';
+$('kSend').onclick=async()=>{
+  const err=$('kerr'); err.textContent='';
+  const who=$('kWho').value.trim();
+  if(!who){ err.textContent='ඔයාගේ නම ලියන්න.'; $('kWho').focus(); return; }
+  savedName=who; localStorage.setItem('movieRequesterName',who);
+  const btn=$('kSend'); btn.disabled=true; btn.textContent='යවනවා…';
+
+  let body;
+  if(kSess&&kSess.episodes){
+    const eps=[...document.querySelectorAll('#kEps input:checked')].map(b=>+b.value);
+    if(!eps.length){ err.textContent='Episode එකක් හරි select කරන්න.'; btn.disabled=false; btn.innerHTML=kSendLabel; return; }
+    body={title:kPicked.title,url:kPicked.url,episodes:eps,pref:$('kPref').value,requester:who,type:'kdrama'};
+    $('dkEps').textContent=eps.length===kSess.episodes.length&&eps.length>3?`All ${eps.length} episodes`:eps.map(i=>kSess.episodes[i].name).slice(0,4).join(', ')+(eps.length>4?` +${eps.length-4}`:'');
+  } else {
+    const q=document.querySelector('#kQuals .srv-btn[aria-pressed="true"]')?.textContent||'HD';
+    body={title:kPicked.title,url:kPicked.url,quality_label:q,requester:who,type:'kdrama'};
+    $('dkEps').textContent=q;
+  }
+  try{
+    const r=await fetch(`${API_BASE}/request-kdrama`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const d=await r.json();
+    if(d.success){ $('dkTitle').textContent=kPicked.title; $('dkWho').textContent=who; $('kFormView').style.display='none'; $('kDone').style.display=''; }
+    else err.textContent=d.message||'Request fail උනා.';
+  }catch(e){ err.textContent='Server connect වෙන්න බැරි වුණා.'; }
+  finally{ btn.disabled=false; btn.innerHTML=kSendLabel; }
+};
+
+$('kClose').onclick=()=>$('kVeil').classList.remove('show');
+$('kAgain').onclick=()=>{ $('kVeil').classList.remove('show'); window.scrollTo({top:0,behavior:'smooth'}); $('q').focus(); };
+$('kVeil').onclick=e=>{ if(e.target.id==='kVeil') $('kVeil').classList.remove('show'); };
+
+// ══════════════════════════════════════════
+// 🐱 CARTOON
+// ══════════════════════════════════════════
+const lockBar=$('lockBar');
+async function loadCartoonStatus(){
+  if(!API_BASE) return;
+  try{
+    const d=await(await fetch(`${API_BASE}/cartoon-status`)).json();
+    cartoonUnlocked=!!d.unlocked;
+    $('tabLock').style.display=d.unlocked?'none':'';
+    if(mode!=='cartoon') return;
+    if(!d.online){ showLock('','Bot offline. පස්සේ try කරන්න.',0,1); return; }
+    if(d.unlocked){ lockBar.style.display='none'; return; }
+    showLock('',`Group members ${d.required}ක් වුණාම Cartoons open වෙනවා.`,d.members,d.required);
+  }catch(_){}
+}
+function showLock(_t,msg,have,need){
+  lockBar.style.display='block';
+  $('lockMsg').textContent=msg;
+  $('lockFill').style.width=Math.min(100,Math.round(have/Math.max(1,need)*100))+'%';
+  $('lockCount').textContent=need>1?`${have} / ${need} MEMBERS`:'';
+}
+loadCartoonStatus();
+
+async function searchCartoon(){
+  if(!API_BASE){ openSettings(); return; }
+  const q=$('q').value.trim();
+  if(!q){ say('Cartoon name එකක් ලියන්න.',true); return; }
+  resultsEl.innerHTML=''; $('more').style.display='none'; $('goBtn').disabled=true; say('SEARCHING…');
+  try{
+    const r=await fetch(`${API_BASE}/cartoon-search?q=${encodeURIComponent(q)}`);
+    const d=await r.json();
+    if(d.locked){ cartoonUnlocked=false; loadCartoonStatus(); say(d.message,true); return; }
+    if(!d.success){ say(d.message||'Search fail උනා.',true); return; }
+    if(!d.results.length){ say(`"${q}" ට result නෑ.`,true); return; }
+    say(`${d.results.length} RESULTS`);
+    d.results.forEach((m,i)=>{
+      const b=document.createElement('button');
+      b.className='mcard'; b.style.animationDelay=(Math.min(i,8)*0.05)+'s';
+      b.innerHTML=`<div class="poster"><i class="fas fa-cat"></i>${m.img?`<img src="${esc(m.img)}" alt="" loading="lazy">`:''}
+      </div><h3>${esc(m.title)}</h3>`;
+      const im=b.querySelector('img'); if(im) im.onerror=()=>im.remove();
+      b.onclick=()=>openCartoon(m); resultsEl.appendChild(b);
+    });
+  }catch(e){ say('Server connect වෙන්න බැරි වුණා.',true); }
+  finally{ $('goBtn').disabled=false; }
+}
+
+let cSess=null;
+const cShow=id=>['cLoading','cForm','cDone'].forEach(x=>$(x).style.display=x===id?'':'none');
+
+async function openCartoon(m){
+  cSess=null; $('cTitle').textContent=m.title; $('cCount').textContent=''; $('cErr').textContent='';
+  const im=$('cImg'); im.style.display=''; im.src=m.img||''; im.onerror=()=>im.style.display='none';
+  cShow('cLoading'); $('cVeil').classList.add('show');
+  try{
+    const d=await(await fetch(`${API_BASE}/cartoon-episodes?url=${encodeURIComponent(m.url)}`)).json();
+    if(d.locked){ $('cVeil').classList.remove('show'); loadCartoonStatus(); say(d.message,true); return; }
+    if(!d.success){ $('cLoading').style.display='none'; $('cErr').textContent=d.message||'Episodes load කරන්න බැරි වුණා.'; return; }
+    cSess=d; $('cCount').textContent=d.episodes.length===1?'Full download':`${d.episodes.length} episodes`;
+    $('cPref').innerHTML='<option value="">Auto (හොඳම එක)</option>'+(d.labels||[]).map(l=>`<option>${esc(l)}</option>`).join('');
+    $('cEps').innerHTML=d.episodes.map(e=>`<label class="ep"><input type="checkbox" value="${e.idx}"><span>${esc(e.name)}</span><small>${e.links} link${e.links>1?'s':''}</small></label>`).join('');
+    $('cNote').textContent=`One time max: ${d.maxEpisodes} episodes.`;
+    $('cAll').textContent='සියල්ල තෝරන්න'; $('cWho').value=savedName; cShow('cForm');
+  }catch(e){ $('cLoading').style.display='none'; $('cErr').textContent='Server connect වෙන්න බැරි වුණා.'; }
+}
+$('cAll').onclick=()=>{
+  const boxes=[...document.querySelectorAll('#cEps input')];
+  const max=cSess?cSess.maxEpisodes:12;
+  const allOn=boxes.slice(0,max).every(b=>b.checked);
+  boxes.forEach((b,i)=>b.checked=allOn?false:i<max);
+  $('cAll').textContent=allOn?'සියල්ල තෝරන්න':'ඔක්කොම අයින් කරන්න';
+};
+document.addEventListener('change',e=>{
+  if(!e.target.closest||!e.target.closest('#cEps')||!cSess) return;
+  const on=[...document.querySelectorAll('#cEps input:checked')];
+  if(on.length>cSess.maxEpisodes){ e.target.checked=false; $('cErr').textContent=`Max episodes ${cSess.maxEpisodes}ක් විතරයි.`; }
+  else $('cErr').textContent='';
+});
+const cSendLabel='<i class="fas fa-paper-plane"></i> Group එකට request කරන්න';
+$('cSend').onclick=async()=>{
+  const err=$('cErr'); err.textContent='';
+  const who=$('cWho').value.trim();
+  const eps=[...document.querySelectorAll('#cEps input:checked')].map(b=>+b.value);
+  if(!eps.length){ err.textContent='Episode එකක් හරි select කරන්න.'; return; }
+  if(!who){ err.textContent='ඔයාගේ නම ලියන්න.'; $('cWho').focus(); return; }
+  savedName=who; localStorage.setItem('movieRequesterName',who);
+  const btn=$('cSend'); btn.disabled=true; btn.textContent='යවනවා…';
+  try{
+    const r=await fetch(`${API_BASE}/request-cartoon`,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({token:cSess.token,episodes:eps,pref:$('cPref').value,requester:who})});
+    const d=await r.json();
+    if(d.success){
+      $('dcTitle').textContent=cSess.title;
+      $('dcEps').textContent=eps.length===cSess.episodes.length&&eps.length>3?`All ${eps.length} episodes`:eps.map(i=>cSess.episodes[i].name).slice(0,4).join(', ')+(eps.length>4?` +${eps.length-4}`:'');
+      $('dcWho').textContent=who; cShow('cDone');
+    }else err.textContent=d.message||'Request fail උනා.';
+  }catch(e){ err.textContent='Server connect වෙන්න බැරි වුණා.'; }
+  finally{ btn.disabled=false; btn.innerHTML=cSendLabel; }
+};
+$('cClose').onclick=()=>$('cVeil').classList.remove('show');
+$('cAgain').onclick=()=>{ $('cVeil').classList.remove('show'); window.scrollTo({top:0,behavior:'smooth'}); $('q').focus(); };
+$('cVeil').onclick=e=>{ if(e.target.id==='cVeil') $('cVeil').classList.remove('show'); };
+
+// ══════════════════════════════════════════
+// 🎵 SONGS
+// ══════════════════════════════════════════
+async function searchSong(fresh){
+  if(!API_BASE){ openSettings(); return; }
+  const q=$('q').value.trim();
+  if(fresh&&!q){ say('Song / artist name ලියන්න.',true); return; }
+  if(fresh){ page=1; query=q; resultsEl.innerHTML=''; }
+  $('more').style.display='none'; $('goBtn').disabled=true; say('SEARCHING…');
+  try{
+    const r=await fetch(`${API_BASE}/song-search?q=${encodeURIComponent(query)}&page=${page}`);
+    const data=await r.json();
+    const items=listOf(data);
+    if(page===1&&!items.length){ say(`"${query}" ට result නෑ.`,true); return; }
+    if(!items.length){ say('තව results නෑ.'); return; }
+    say(page===1?`${items.length} RESULTS`:'');
+    items.forEach((m,i)=>{
+      const b=document.createElement('button');
+      b.className='mcard'; b.style.animationDelay=(Math.min(i,8)*0.05)+'s';
+      const title=m.title||m.name||'Unknown';
+      const artist=m.artist||m.uploader||'';
+      const dur=m.duration||m.runtime||'';
+      const img=m.img||m.thumbnail||m.thumb||m.cover||m.image||'';
+      b.innerHTML=`<div class="poster"><i class="fas fa-music"></i>${img?`<img src="${esc(img)}" alt="" loading="lazy">`:''}
+      </div><h3>${esc(title)}</h3>${artist?`<span class="yr">${esc(artist)}</span>`:''}${dur?`<span class="dur">${esc(dur)}</span>`:''}`;
+      const im=b.querySelector('img'); if(im) im.onerror=()=>im.remove();
+      b.onclick=()=>openSong({title,artist,img,url:m.url||m.link||'',duration:dur}); resultsEl.appendChild(b);
+    });
+    $('more').style.display='inline-flex';
+  }catch(e){ say('Server connect වෙන්න බැරි වුණා.',true); }
+  finally{ $('goBtn').disabled=false; }
+}
+
+function setSongFmt(f){
+  songFmt=f;
+  document.querySelectorAll('#sQuals .srv-btn').forEach(c=>c.setAttribute('aria-pressed',c.textContent===f));
+}
+document.querySelectorAll('#sQuals .srv-btn').forEach(c=>c.onclick=()=>setSongFmt(c.textContent));
+
+function openSong(m){
+  sPicked=m;
+  $('sFormView').style.display=''; $('sDone').style.display='none';
+  const im=$('sImg'); im.style.display=''; im.src=m.img||''; im.onerror=()=>im.style.display='none';
+  $('sTitle').textContent=m.title; $('sArtist').textContent=m.artist||''; $('sDur').textContent=m.duration||'';
+  $('sWho').value=savedName; $('sPhone').value=localStorage.getItem('songPhone')||''; $('serr').textContent='';
+  $('sVeil').classList.add('show');
+}
+const sSendLabel='<i class="fas fa-paper-plane"></i> DM ෙ ඉල්ලන්න';
+$('sSend').onclick=async()=>{
+  const who=$('sWho').value.trim(), err=$('serr');
+  const rawPhone=$('sPhone').value.trim().replace(/\D/g,'');
+  if(!who){ err.textContent='ඔයාගේ නම ලියන්න.'; $('sWho').focus(); return; }
+  if(!rawPhone||rawPhone.length<9){ err.textContent='Valid WhatsApp number ලියන්න. (94XXXXXXXXX)'; $('sPhone').focus(); return; }
+  const phone=rawPhone.startsWith('0')?'94'+rawPhone.slice(1):rawPhone.startsWith('94')?rawPhone:'94'+rawPhone;
+  if(!/^94\d{9}$/.test(phone)){ err.textContent='Valid Sri Lanka WhatsApp number ලියන්න. (94XXXXXXXXX)'; $('sPhone').focus(); return; }
+  savedName=who; localStorage.setItem('movieRequesterName',who); localStorage.setItem('songPhone',phone);
+  const btn=$('sSend'); btn.disabled=true; btn.textContent='යවනවා…'; err.textContent='';
+  try{
+    const r=await fetch(`${API_BASE}/request-song`,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({title:sPicked.title,url:sPicked.url,requester:who,phone})});
+    const d=await r.json();
+    if(d.success){ $('dsTitle').textContent=sPicked.title; $('dsPhone').textContent=phone; $('dsWho').textContent=who; $('sFormView').style.display='none'; $('sDone').style.display=''; }
+    else err.textContent=d.message||'Request fail උනා.';
+  }catch(e){ err.textContent='Server connect වෙන්න බැරි වුණා.'; }
+  finally{ btn.disabled=false; btn.innerHTML=sSendLabel; }
+};
+$('sClose').onclick=()=>$('sVeil').classList.remove('show');
+$('sAgain').onclick=()=>{ $('sVeil').classList.remove('show'); window.scrollTo({top:0,behavior:'smooth'}); $('q').focus(); };
+$('sVeil').onclick=e=>{ if(e.target.id==='sVeil') $('sVeil').classList.remove('show'); };
+
+// ══════════════════════════════════════════
+// 🔞 ADULT (PAID)
+// ══════════════════════════════════════════
+function checkAdultUnlock(){
+  adultKey=localStorage.getItem('adultKey')||null;
+  adultExpiry=parseInt(localStorage.getItem('adultKeyExpiry')||'0');
+  adultUnlocked=!!(adultKey&&Date.now()<adultExpiry);
+  return adultUnlocked;
+}
+
+$('adultKeyBtn').onclick=async()=>{
+  const key=$('adultKeyIn').value.trim();
+  const errEl=$('keyErr');
+  errEl.textContent='';
+  if(!key){ errEl.textContent='Access key ලියන්න.'; return; }
+  if(!API_BASE){ errEl.textContent='Server URL set කරලා නෑ.'; return; }
+  const btn=$('adultKeyBtn'); btn.disabled=true; btn.textContent='Checking…';
+  try{
+    const r=await fetch(`${API_BASE}/verify-adult-key`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({key})});
+    const d=await r.json();
+    if(d.valid){
+      localStorage.setItem('adultKey',key);
+      localStorage.setItem('adultKeyExpiry',String(d.expiresAt||Date.now()+30*24*60*60*1000));
+      adultKey=key; adultExpiry=d.expiresAt||Date.now()+30*24*60*60*1000; adultUnlocked=true;
+      $('adultGate').classList.remove('show');
+      $('searchBox').style.display='';
+      errEl.textContent='';
+    }else{ errEl.textContent=d.message||'Invalid key. Admin ව contact කරන්න.'; }
+  }catch(e){ errEl.textContent='Server connect වෙන්න බැරි වුණා.'; }
+  finally{ btn.disabled=false; btn.innerHTML='<i class="fas fa-unlock"></i> Unlock'; }
+};
+
+async function searchAdult(fresh){
+  if(!checkAdultUnlock()){ $('searchBox').style.display='none'; $('adultGate').classList.add('show'); return; }
+  if(!API_BASE){ openSettings(); return; }
+  const q=$('q').value.trim();
+  if(fresh&&!q){ say('Search term එකක් ලියන්න.',true); return; }
+  if(fresh){ page=1; query=q; resultsEl.innerHTML=''; }
+  $('more').style.display='none'; $('goBtn').disabled=true; say('SEARCHING…');
+  try{
+    const r=await fetch(`${API_BASE}/adult-search?q=${encodeURIComponent(query)}&page=${page}`,{headers:{'X-Adult-Key':adultKey}});
+    const data=await r.json();
+    if(data.expired||data.invalid){ adultUnlocked=false; localStorage.removeItem('adultKey'); localStorage.removeItem('adultKeyExpiry'); $('searchBox').style.display='none'; $('adultGate').classList.add('show'); say('Key expired. නව key ගන්න.',true); return; }
+    const items=data.results||listOf(data);
+    if(page===1&&!items.length){ say(`"${query}" ට result නෑ.`,true); return; }
+    if(!items.length){ say('තව results නෑ.'); return; }
+    say(page===1?`${items.length} RESULTS`:'');
+    items.forEach((it,i)=>{
+      const b=document.createElement('button');
+      b.className='mcard adult-card'; b.style.animationDelay=(Math.min(i,8)*0.05)+'s';
+      const title=it.title||'Unknown'; const dur=it.duration||''; const views=it.views||''; const thumb=it.thumbnail||it.thumb||'';
+      b.innerHTML=`<div class="poster wide"><i class="fas fa-play-circle"></i>${thumb?`<img src="${esc(thumb)}" alt="" loading="lazy">`:''}
+      </div><span class="adult-badge">🔞 18+</span><h3>${esc(title)}</h3>${dur?`<span class="dur">⏱ ${esc(dur)}</span>`:''}${views?`<span class="yr">👁 ${esc(views)}</span>`:''}`;
+      const im=b.querySelector('img'); if(im) im.onerror=()=>im.remove();
+      b.onclick=()=>openAdult({title,duration:dur,views,thumbnail:thumb,link:it.link||it.url||''});
+      resultsEl.appendChild(b);
+    });
+    $('more').style.display='inline-flex';
+  }catch(e){ say('Server connect වෙන්න බැරි වුණා.',true); }
+  finally{ $('goBtn').disabled=false; }
+}
+
+function setAQuality(q){
+  aQuality=q;
+  document.querySelectorAll('#aQuals .srv-btn').forEach(c=>c.setAttribute('aria-pressed',c.textContent===q));
+}
+document.querySelectorAll('#aQuals .srv-btn').forEach(c=>c.onclick=()=>setAQuality(c.textContent));
+
+function openAdult(m){
+  aPicked=m;
+  $('aFormView').style.display=''; $('aDone').style.display='none';
+  const im=$('aImg'); im.style.display=''; im.src=m.thumbnail||''; im.onerror=()=>im.style.display='none';
+  $('aTitle').textContent=m.title; $('aDur').textContent=m.duration||''; $('aViews').textContent=m.views||''; $('aUploader').textContent=m.uploader||'';
+  $('aWho').value=savedName; $('aPhone').value=localStorage.getItem('adultPhone')||''; $('aerr').textContent=''; setAQuality('480p');
+  $('aVeil').classList.add('show');
+}
+const aSendLabel='<i class="fas fa-paper-plane"></i> DM ෙ ඉල්ලන්න';
+$('aSend').onclick=async()=>{
+  const who=$('aWho').value.trim(), phone=$('aPhone').value.trim().replace(/\D/g,''), err=$('aerr');
+  err.textContent='';
+  if(!who){ err.textContent='ඔයාගේ නම ලියන්න.'; $('aWho').focus(); return; }
+  if(!phone||phone.length<9){ err.textContent='Valid WhatsApp number ලියන්න. (94XXXXXXXXX)'; $('aPhone').focus(); return; }
+  const num=phone.startsWith('0')?'94'+phone.slice(1):phone.startsWith('94')?phone:'94'+phone;
+  if(!/^94\d{9}$/.test(num)){ err.textContent='Valid Sri Lanka WhatsApp number ලියන්න. (94XXXXXXXXX)'; $('aPhone').focus(); return; }
+  savedName=who; localStorage.setItem('movieRequesterName',who); localStorage.setItem('adultPhone',num);
+  const btn=$('aSend'); btn.disabled=true; btn.textContent='යවනවා…';
+  try{
+    const r=await fetch(`${API_BASE}/request-adult`,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({key:adultKey,videoUrl:aPicked.link,quality:aQuality,title:aPicked.title,requester:who,phone:num})});
+    const d=await r.json();
+    if(d.success){ $('daTitle').textContent=aPicked.title; $('daQ').textContent=aQuality; $('daPhone').textContent=num; $('aFormView').style.display='none'; $('aDone').style.display=''; }
+    else err.textContent=d.message||'Request fail උනා.';
+  }catch(e){ err.textContent='Server connect වෙන්න බැරි වුණා.'; }
+  finally{ btn.disabled=false; btn.innerHTML=aSendLabel; }
+};
+$('aClose').onclick=()=>$('aVeil').classList.remove('show');
+$('aAgain').onclick=()=>{ $('aVeil').classList.remove('show'); window.scrollTo({top:0,behavior:'smooth'}); $('q').focus(); };
+$('aVeil').onclick=e=>{ if(e.target.id==='aVeil') $('aVeil').classList.remove('show'); };
+
+// ══════════════════════════════════════════
+// 🎵 MUSIC
+// ══════════════════════════════════════════
+(function(){
+  const music=$('bgMusic'),btn=$('musicControl'),icon=$('musicIcon');
+  let playing=false,userPaused=false;
+  const ui=on=>{ playing=on; icon.className=on?'fas fa-pause':'fas fa-music'; btn.classList.toggle('playing',on); };
+  const start=()=>music.play().then(()=>ui(true)).catch(()=>{});
+  btn.addEventListener('click',()=>{ if(playing){music.pause();ui(false);userPaused=true;} else{userPaused=false;start();} });
+  const events=['click','touchend','pointerup','keydown'];
+  const disarm=()=>events.forEach(ev=>removeEventListener(ev,unlock,true));
+  function unlock(e){ if(e.target&&e.target.closest&&e.target.closest('#musicControl')) return; if(userPaused){disarm();return;} if(playing){disarm();return;} music.play().then(()=>{ui(true);disarm();}).catch(()=>{}); }
+  events.forEach(ev=>addEventListener(ev,unlock,true));
+  start();
+})();
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    ['veil','kVeil','cVeil','sVeil','aVeil','setVeil','devVeil'].forEach(id=>$(id)?.classList.remove('show'));
+  }
+});
+</script>
+</body>
+</html>

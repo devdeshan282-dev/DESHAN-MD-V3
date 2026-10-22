@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="robots" content="noindex,nofollow"/>
+<meta name="referrer" content="no-referrer"/>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; base-uri 'none'; form-action 'none'"/>
+<title>Owner Panel</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;padding:20px 16px 40px;background:#05080f;color:#dde9ff;font:15px/1.5 system-ui,sans-serif}
+  main{max-width:440px;margin:0 auto}
+  h1{font-size:1.2rem;margin:0 0 4px}
+  p.sub{margin:0 0 18px;color:#8aa0c0;font-size:.82rem}
+  section{border:1px solid #16233a;border-radius:14px;padding:14px;margin-bottom:14px;background:#08101c}
+  h2{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:#7fb4ff;margin:0 0 10px}
+  label{display:block;font-size:.76rem;color:#8aa0c0;margin:10px 0 4px}
+  input{width:100%;padding:11px 12px;border-radius:10px;border:1px solid #1b2c48;background:#050a14;color:inherit;font:inherit}
+  .row{display:flex;gap:8px}
+  button{padding:11px 14px;border-radius:10px;border:0;font:inherit;font-weight:600;cursor:pointer;color:#001018;background:linear-gradient(135deg,#0088ff,#00d4ff)}
+  button.alt{background:#16233a;color:#dde9ff}
+  button.bad{background:#3a1622;color:#ffb3c4}
+  button:disabled{opacity:.5}
+  .out{margin-top:10px;font-size:.8rem;min-height:18px;word-break:break-all}
+  .ok{color:#6effc4}.err{color:#ff8fa6}
+  code{display:block;margin-top:8px;padding:10px;border-radius:10px;background:#04120c;border:1px solid #0e3a28;color:#6effc4;font-size:.9rem;user-select:all}
+</style>
+</head>
+<body>
+<main>
+  <h1>Owner Panel</h1>
+  <p class="sub">ADMIN_PASSWORD එක මේ page එකෙන් පිටතට යන්නේ නෑ, ඔයාගේ server එකට විතරයි. 5 වරදින් පැයක් lock වෙනවා.</p>
+
+  <section>
+    <h2>Admin password</h2>
+    <input id="pw" type="password" autocomplete="current-password" placeholder="ADMIN_PASSWORD"/>
+  </section>
+
+  <section>
+    <h2>Adult access key</h2>
+    <label for="days">Duration (days)</label>
+    <div class="row"><input id="days" type="number" min="1" max="365" value="30" style="max-width:110px"/><button id="issue" style="flex:1">Issue key</button></div>
+    <div id="keyBox"></div>
+    <label for="rk">Revoke key</label>
+    <div class="row"><input id="rk" type="text" placeholder="XXXXXX-XXXXXX-XXXXXX-XXXXXX" autocomplete="off"/><button id="revoke" class="bad">Revoke</button></div>
+    <div class="out" id="keyOut"></div>
+  </section>
+
+  <section>
+    <h2>Security</h2>
+    <div class="row"><button id="bans" class="alt" style="flex:1">Active bans</button><button id="lockOn" class="bad" style="flex:1">Lockdown ON</button><button id="lockOff" class="alt" style="flex:1">OFF</button></div>
+    <label for="ubip">Unban IP</label>
+    <div class="row"><input id="ubip" type="text" placeholder="1.2.3.4" autocomplete="off"/><button id="unban">Unban</button></div>
+    <div class="out" id="secOut"></div>
+    <div id="banList" style="font-size:.78rem;word-break:break-all"></div>
+  </section>
+
+  <section>
+    <h2>Cartoons</h2>
+    <div class="row"><button id="unlock" style="flex:1">Unlock</button><button id="lock" class="alt" style="flex:1">Lock</button></div>
+    <div class="out" id="cartOut"></div>
+  </section>
+</main>
+<script>
+// page lives at <mount>/owner-panel, so the API is the same mount (e.g. /code)
+var API = location.pathname.replace(/\/owner-panel\/?$/, '');
+function $(id){ return document.getElementById(id); }
+function show(el, msg, ok){ el.textContent = msg; el.className = 'out ' + (ok ? 'ok' : 'err'); }
+function call(path, body, out, done){
+  var pw = $('pw').value;
+  if (!pw) return show(out, 'Admin password ලියන්න.', false);
+  body.password = pw;
+  fetch(API + path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+    .then(function(r){ return r.json().catch(function(){ return { success:false, message:'Bad response' }; }); })
+    .then(function(d){ d.success ? done(d) : show(out, d.message || 'Failed', false); })
+    .catch(function(){ show(out, 'Server connect වෙන්න බැරි වුණා.', false); });
+}
+$('issue').onclick = function(){
+  var days = parseInt($('days').value, 10) || 30;
+  call('/admin/issue-key', { days: days }, $('keyOut'), function(d){
+    show($('keyOut'), 'Key issued (' + d.days + ' days)', true);
+    var c = document.createElement('code'); c.textContent = d.key; $('keyBox').replaceChildren(c);
+  });
+};
+$('revoke').onclick = function(){
+  var k = $('rk').value.trim();
+  if (!k) return show($('keyOut'), 'Key ලියන්න.', false);
+  call('/admin/revoke-key', { key: k }, $('keyOut'), function(d){ show($('keyOut'), d.message || 'Revoked', true); $('rk').value = ''; });
+};
+$('bans').onclick = function(){
+  call('/admin/bans', {}, $('secOut'), function(d){
+    show($('secOut'), d.message, true);
+    var box = $('banList'); box.textContent = '';
+    (d.bans || []).forEach(function(b){ var p = document.createElement('div'); p.textContent = b.ip + '  (offence #' + b.level + ', until ' + b.until.slice(0, 16).replace('T', ' ') + ' UTC)'; box.appendChild(p); });
+  });
+};
+$('unban').onclick = function(){ var ip = $('ubip').value.trim(); if (!ip) return show($('secOut'), 'IP ලියන්න.', false); call('/admin/unban', { ip: ip }, $('secOut'), function(d){ show($('secOut'), d.message, true); $('ubip').value = ''; }); };
+$('lockOn').onclick  = function(){ call('/admin/lockdown', { action: 'on' },  $('secOut'), function(d){ show($('secOut'), d.message, true); }); };
+$('lockOff').onclick = function(){ call('/admin/lockdown', { action: 'off' }, $('secOut'), function(d){ show($('secOut'), d.message, true); }); };
+$('unlock').onclick = function(){ call('/admin/cartoon-unlock', { action: 'unlock' }, $('cartOut'), function(d){ show($('cartOut'), d.message || 'Unlocked', true); }); };
+$('lock').onclick   = function(){ call('/admin/cartoon-unlock', { action: 'lock' },   $('cartOut'), function(d){ show($('cartOut'), d.message || 'Locked', true); }); };
+</script>
+</body>
+</html>
